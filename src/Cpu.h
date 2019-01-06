@@ -25,10 +25,11 @@ struct Operation
 int8_t CalculateShortArgument(struct MachineStructure *, enum AddressMode);
 uint16_t CalculateArgument(struct MachineStructure *, enum AddressMode);
 uint16_t CalculateMemoryLocation(struct MachineStructure *, enum AddressMode);
+uint16_t Read16WrapBug(struct MachineStructure *, uint16_t);
 
 void CompareValues(struct RegisterStructure *, uint8_t, uint8_t);
 void SetStatusFlags(struct RegisterStructure *, uint8_t);
-void SetStatusFlagsWithSign(struct RegisterStructure *, int8_t, int16_t);
+uint8_t SubWCarryImpl(struct MachineStructure *, uint8_t, uint8_t);
 
 unsigned char PrintInstruction(unsigned char * instruction);
 void LogInstruction(unsigned char * instruction, struct MachineStructure *);
@@ -96,4 +97,14 @@ void XToAccum(struct MachineStructure *, enum AddressMode);
 void YToAccum(struct MachineStructure *, enum AddressMode);
 void XToSP(struct MachineStructure *, enum AddressMode);
 void NoOp(struct MachineStructure *, enum AddressMode);
+
+// Invalid instructions:
+void LoadAccumX(struct MachineStructure *, enum AddressMode);
+void StoreAccumX(struct MachineStructure *, enum AddressMode);
+void DecCompare(struct MachineStructure *, enum AddressMode);
+void IncSubWCarry(struct MachineStructure *, enum AddressMode);
+void ShiftLeftOr(struct MachineStructure *, enum AddressMode);
+void ShiftRightExOr(struct MachineStructure *, enum AddressMode);
+void RotateLeftAnd(struct MachineStructure *, enum AddressMode);
+void RotateRightAdd(struct MachineStructure *, enum AddressMode);
 #endif
